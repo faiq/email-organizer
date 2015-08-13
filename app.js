@@ -23,9 +23,9 @@ class Email extends React.Component {
   render () {
     console.log(JSON.stringify(this.props))
     return <li> 
-      <div className="MyComponent" draggable="true"> {this.props.snippet} </div>
+      <div className="MyComponent" draggable="true"> <header> {this.props.title} </header>  {this.props.snippet} </div>
     </li>
   }
 }
-Email.defaultProps = { snippet: 'default message'}
+Email.defaultProps = { snippet: 'default message', title: 'default title'}
 React.render(<EmailList name="not read"/>, document.querySelector('#content'))
