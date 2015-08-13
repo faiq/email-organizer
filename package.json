@@ -5,12 +5,13 @@
   "main": "index.js",
   "browserify": {
     "transform": [
-      "babelify"
+      "babelify",
+      "scssify"
     ]
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify app.js > ./public/bundle.js",
+    "build": "browserify app.js > ./public/bundle.js && sass ./public/styles/custom.scss > ./public/styles/custom.css",
     "serve": "ecstatic -p 8000 public",
     "start": "npm run serve & npm run watch",
     "watch": "watchify app.js -o public/bundle.js -dv"

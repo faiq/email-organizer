@@ -23,7 +23,7 @@ class Email extends React.Component {
   render () {
     console.log(JSON.stringify(this.props))
     return <li> 
-      {this.props.snippet} 
+      <div className="MyComponent" draggable="true"> {this.props.snippet} </div>
     </li>
   }
 }
