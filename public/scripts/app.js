@@ -12,8 +12,8 @@ class EmailList extends React.Component {
 class Email extends React.Component {
   constructor (arg) {
     super()
-    this.state = function () {
-      {
+    this.props = function () {
+      return {
         snippet = 'hey wassup hello'
       }
     }
