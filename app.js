@@ -32,6 +32,8 @@ class Email extends React.Component {
 
 React.render(<Email />, document.querySelector('#content'))
 */
+import React from 'react'
+
 class App extends React.Component {
   constructor () {
     super()
