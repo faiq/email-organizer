@@ -1,6 +1,6 @@
 import React from 'react'
 
-/*class EmailList extends React.Component {
+class EmailList extends React.Component {
   constructor () {
     super()
     this.props = {
@@ -24,14 +24,15 @@ class Email extends React.Component {
     }
   }
   render () {
+    console.log(JSON.stringify(this.props))
     return <div>
-      <b> {this.props.snippet} </b>
+      <h1> {this.props.snippet} </h1>
     </div>
   } 
 }
 
-React.render(<Email />, document.querySelector('#content'))
-*/
+React.render(<Email snippet="hi"/>, document.querySelector('#content'))
+/*
 class App extends React.Component {
   constructor () {
     super()
@@ -48,3 +49,4 @@ class App extends React.Component {
   }
 }
 React.render(<App />, document.querySelector('#content'))
+*/
