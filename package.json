@@ -4,7 +4,8 @@
   "description": "react app to help sort out your emails",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify public/scripts/app.js > public/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -15,8 +16,15 @@
   "bugs": {
     "url": "https://github.com/faiq/email-organizer/issues"
   },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
   "homepage": "https://github.com/faiq/email-organizer#readme",
   "dependencies": {
-    "browserify": "^11.0.1"
+    "babelify": "^6.1.3",
+    "browserify": "^11.0.1",
+    "react": "^0.13.3"
   }
 }
