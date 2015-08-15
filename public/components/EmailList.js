@@ -1,5 +1,5 @@
 import React from 'react'
-import DropTarget from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 import Email from './Email'
 
 class EmailList extends React.Component {
@@ -23,9 +23,8 @@ const EmailTarget = {
   }
 }
 
-DropTarget('Email', EmailTarget, (connect, monitor) => ({
+export default DropTarget('Email', EmailTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop()
 }))(EmailList)
-

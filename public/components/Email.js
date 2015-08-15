@@ -1,5 +1,5 @@
 import React from 'react'
-import DragSource from 'react-dnd';
+import { DragSource } from 'react-dnd';
 
 const boxSource = {
   beginDrag(props) {
@@ -45,5 +45,6 @@ class Email extends React.Component {
     )
   }
 }
+
 Email.defaultProps = { snippet: 'you got a job!', from: 'Chris Wiggins', date: '11/24/2015'}
-DragSource('Email', boxSource, collect)(Email)
+export default DragSource('Email', boxSource, collect)(Email)
