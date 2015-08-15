@@ -7,7 +7,7 @@ class EmailList extends React.Component {
     super()
   }
   render () { 
-    var Emails = [<Email/>,<Email/>,<Email/>]
+    var Emails = [<Email />,<Email />,<Email />]
     return <div className="Emails">
       <h1> {this.props.name} </h1>
       <ul id="EmailList">
