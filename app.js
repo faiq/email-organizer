@@ -1,5 +1,5 @@
 import React from 'react'
-import $ from 'jquery'
+import { DragSource, DropTarget } from 'react-dnd';
 
 class EmailList extends React.Component {
   constructor () {
@@ -9,12 +9,38 @@ class EmailList extends React.Component {
     var Emails = [<Email/>,<Email/>,<Email/>]
     return <div className="Emails">
       <h1> {this.props.name} </h1>
-      <ul id="EmailList" onDragOver={this.dragOver}>
+      <ul id="EmailList">
         {Emails}
       </ul>
     </div>
   }
+}
 
+const EmailTarget = {
+  drop(props, monitor) {
+    props.onDrop(monitor.getItem())
+  }
+}
+
+DropTarget('Email', EmailTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+  canDrop: monitor.canDrop()
+}))(EmailList)
+
+const boxSource = {
+  beginDrag(props) {
+    return {
+      date: props.date
+    }
+  }
+}
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
 }
 
 class Email extends React.Component {
@@ -22,7 +48,6 @@ class Email extends React.Component {
     super(props)
   }
   render () {
-    console.log(JSON.stringify(this.props))
     return <li> 
       <div className="Email" draggable="true"> 
         <div className="header"> 
@@ -37,4 +62,5 @@ class Email extends React.Component {
   }
 }
 Email.defaultProps = { snippet: 'you got a job!', from: 'Chris Wiggins', date: '11/24/2015'}
+DragSource('Email', boxSource, collect)(Email)
 React.render(<EmailList name="not read"/>, document.querySelector('#content'))
