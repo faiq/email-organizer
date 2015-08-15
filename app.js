@@ -11,5 +11,4 @@ class App {
   }
 }
 
-DragDropContext(HTML5Backend)(App)
-React.render(<App />, document.querySelector('#content'))
+React.render(React.createElement(DragDropContext(HTML5Backend)(App)), document.querySelector('#content'))
