@@ -6,6 +6,15 @@ const boxSource = {
     return {
       date: props.date
     }
+  },
+
+  endDrag(props, monitor) {
+    const item = monitor.getItem();
+    const dropResult = monitor.getDropResult();
+
+    if (dropResult) {
+      window.alert(`You dropped ${item.name} into ${dropResult.name}!`);
+    }
   }
 }
 
@@ -21,7 +30,8 @@ class Email extends React.Component {
     super(props)
   }
   render () {
-    return <li> 
+    const { connectDragSource } = this.props
+    return connectDragSource (<li> 
       <div className="Email" draggable="true"> 
         <div className="header"> 
           <div id="from"> {this.props.from} </div>  
@@ -32,6 +42,7 @@ class Email extends React.Component {
         </div>
       </div>
     </li>
+    )
   }
 }
 Email.defaultProps = { snippet: 'you got a job!', from: 'Chris Wiggins', date: '11/24/2015'}

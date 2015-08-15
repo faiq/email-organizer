@@ -1,5 +1,6 @@
 import React from 'react'
 import DropTarget from 'react-dnd';
+import Email from './Email'
 
 class EmailList extends React.Component {
   constructor () {
@@ -28,4 +29,3 @@ DropTarget('Email', EmailTarget, (connect, monitor) => ({
   canDrop: monitor.canDrop()
 }))(EmailList)
 
-React.render(<EmailList name="not read"/>, document.querySelector('#content'))
