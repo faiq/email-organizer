@@ -3,9 +3,8 @@ import { DropTarget } from 'react-dnd';
 import Email from './Email'
 
 const EmailTarget = {
-  drop(props) {
-    console.log(arguments)
-    return { name: props.name }
+  drop(props, monitor) {
+    props.onDrop(monitor.getItem())
   }
 }
 
@@ -23,8 +22,8 @@ class EmailList extends React.Component {
   }
 
   render () { 
-    const { connectDropTarget, isDragging, isOver, name } = this.props
-    var Emails = [<Email snippet="hi" />,<Email snippet="hi" />,<Email snippet="hi" />]
+    const { connectDropTarget, isDragging, isOver, name, lastDroppedItem } = this.props
+    console.log(JSON.stringify(lastDroppedItem))
     return connectDropTarget(
       <div className="Emails">
         <h1> {name} </h1>
