@@ -4,6 +4,7 @@ import Email from './Email'
 
 const EmailTarget = {
   drop(props) {
+    console.log(arguments)
     return { name: props.name }
   }
 }
@@ -21,21 +22,6 @@ class EmailList extends React.Component {
     super()
   }
 
-   renderOverlay(color) {
-    return (
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: '100%',
-        width: '100%',
-        zIndex: 1,
-        opacity: 0.5,
-        backgroundColor: color,
-      }} />
-    )
-  }
-
   render () { 
     const { connectDropTarget, isDragging, isOver, name } = this.props
     var Emails = [<Email snippet="hi" />,<Email snippet="hi" />,<Email snippet="hi" />]
@@ -44,7 +30,6 @@ class EmailList extends React.Component {
         <h1> {name} </h1>
         <ul id="EmailList">
           {Emails}
-          {isOver && this.renderOverlay('green')}
         </ul>
       </div>
     )

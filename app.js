@@ -4,10 +4,16 @@ import { DragDropContext } from 'react-dnd';
 import React from 'react'
   
 class App {
+  getEmailLists () { 
+    this.state = {data:['read', 'not read']}
+  }
   render () {
-    return <div>
-      <EmailList name="not read"/>
-    </div>
+    this.getEmailLists()
+    const { data } = this.state
+    let list = data.map(function (listName, index) { 
+      return  <EmailList name={listName} key={index} />
+    })
+    return <div> {list} </div>
   }
 }
 
