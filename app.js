@@ -2,7 +2,6 @@ import EmailList from './public/components/EmailList'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 import { DragDropContext } from 'react-dnd';
 import React from 'react'
-import update from 'react/lib/update';
   
 class App extends React.Component {
   constructor (props) { 
@@ -15,7 +14,7 @@ class App extends React.Component {
       emails: [
         { from: 'chris wiggins', snippet: 'ayyy lmao', date: '1/1/2015', listName: 'read'},
         { from: 'chris wiggins', snippet: 'tsss papapa', date: '1/1/2015', listName: 'not read'},
-        { from: 'chris wiggins', snippet: 'not read thing', date: '1/1/2015', listName: 'read'}
+        { from: 'chris wiggins', snippet: 'read thing', date: '1/1/2015', listName: 'read'}
       ]
     }
   }
@@ -23,13 +22,24 @@ class App extends React.Component {
     const { listNames, emails } = this.state
     let list = listNames.map((listName, index) => {
       let emailsInList = emails.filter(e => e.listName == listName);
-       return <EmailList name={listName} key={index} onDrop={this.handleDrop} data={emailsInList}/>
+       return <EmailList name={listName} key={index} onDrop={(item) => this.handleDrop(item, listName)} data={emailsInList}/>
     })
-    console.log(list)
     return <div> {list} </div>
   }
-  handleDrop () {
-    window.alert(arguments) 
+  handleDrop (email, listName) {
+    if (email.listName != listName) {
+      let emailIndex = this.getEmailIndex(email)
+      email.listName = listName
+      let emails = this.state.emails
+      emails[emailIndex] = email
+      this.setState({emails: emails})
+  }
+  }
+  getEmailIndex (email) {
+    let emailIndex = this.state.emails.map((e, i) => { 
+      if (e.from == email.from && e.snippet == email.snippet && e.date == email.date) return i
+    })
+    return emailIndex.pop()
   }
 }
 
