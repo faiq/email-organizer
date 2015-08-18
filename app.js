@@ -37,9 +37,10 @@ class App extends React.Component {
   }
   getEmailIndex (email) {
     let emailIndex = this.state.emails.map((e, i) => { 
-      if (e.from == email.from && e.snippet == email.snippet && e.date == email.date) return i
-    })
-    return emailIndex.pop()
+      if (e.from == email.from && e.snippet == email.snippet && e.date == email.date) 
+        return i
+    }).filter(num => typeof num === 'number')
+    return emailIndex
   }
 }
 

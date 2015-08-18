@@ -23,7 +23,9 @@ class EmailList extends React.Component {
 
   render () { 
     const { connectDropTarget, isOver, name, lastDroppedItemm, data } = this.props
-    let Emails = data.map((e, i) => <Email snippet={e.snippet} from={e.from} key={i} date={e.date} />)
+    let Emails = data.map((e, i) => {
+      return <Email snippet={e.snippet} from={e.from} key={i} date={e.date} listName={e.listName} />
+    })
     return connectDropTarget(
       <div className="Emails">
         <h1> {name} </h1>
