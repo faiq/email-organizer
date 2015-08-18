@@ -23,8 +23,9 @@ class App extends React.Component {
     let list = listNames.map((listName, index) => {
       let emailsInList = emails.filter(e => e.listName == listName);
        return <EmailList name={listName} key={index} onDrop={(item) => this.handleDrop(item, listName)} data={emailsInList}/>
+      
     })
-    return <div> {list} </div>
+    return <div className="row"> {list} </div> 
   }
   handleDrop (email, listName) {
     if (email.listName != listName) {
@@ -44,4 +45,4 @@ class App extends React.Component {
   }
 }
 
-React.render(React.createElement(DragDropContext(HTML5Backend)(App)), document.querySelector('#content'))
+React.render(React.createElement(DragDropContext(HTML5Backend)(App)), document.body)
