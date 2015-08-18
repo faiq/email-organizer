@@ -17,8 +17,8 @@ function collect(connect, monitor) {
 }
 
 class EmailList extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
   }
 
   render () { 
