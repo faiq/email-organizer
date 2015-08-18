@@ -27,5 +27,4 @@ build/Release
 node_modules
 
 bundle.js
-
-.saas-cache
+.sass-cache/
