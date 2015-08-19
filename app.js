@@ -1,6 +1,11 @@
+/*import EmailList from './public/stores/EmailStore'
+console.log(typeof EmailList)
+let x = new EmailList({listName: 'read'})
+console.log(x.listName)
+*/
 import EmailList from './public/components/EmailList'
-import HTML5Backend from 'react-dnd/modules/backends/HTML5';
-import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd/modules/backends/HTML5'
+import { DragDropContext } from 'react-dnd'
 import React from 'react'
   
 class App extends React.Component {
