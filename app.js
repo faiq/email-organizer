@@ -6,7 +6,7 @@ console.log(x.listName)
 import EmailList from './public/components/EmailList'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
-import { EmailCollection } from './stores/EmailStore'
+import { EmailCollection } from './public/stores/EmailStore'
 import React from 'react'
   
 class App extends React.Component {
