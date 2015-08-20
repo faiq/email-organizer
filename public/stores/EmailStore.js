@@ -1,6 +1,6 @@
 import { Model, Collection } from 'backbone'
 import { EmailDispatcher } from '../Dispatcher'
-import { TodoConstants } from  '../constants/EmailConstants'
+import { EmailConstants } from  '../constants/EmailConstants'
 
 class EmailModel extends Model { 
   defaults () {
@@ -23,7 +23,7 @@ export default class EmailCollection extends Collection {
   }
   dispatchCallback (payload) {
     switch (payload.actionType) { 
-      case 'email-switch':
+      case EmailConstants.EMAIL_SWITCH:
         let email = this.get(paylaod.email.id)
         email.listName = payload.list
         //email.save({}, {url:'/api/v1/tags/'+model.get('id')}) uncomment when we server
