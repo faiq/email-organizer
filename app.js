@@ -6,12 +6,13 @@ console.log(x.listName)
 import EmailList from './public/components/EmailList'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
-import { EmailCollection } from './public/stores/EmailStore'
+import EmailCollection from './public/stores/EmailStore'
 import React from 'react'
   
 class App extends React.Component {
   constructor (props) { 
     super(props)
+    console.log(this.props)
     console.log(this.props.emailStore)
     this.state = {
       listNames: [
@@ -51,5 +52,4 @@ class App extends React.Component {
     return emailIndex
   }
 }
-
 React.render(React.createElement(DragDropContext(HTML5Backend)(App), { emailStore: EmailCollection }), document.body)
