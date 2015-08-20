@@ -1,8 +1,11 @@
 import { Model, Collection } from 'backbone'
+import { EmailDispatcher } from '../Dispatcher'
+import { TodoConstants } from  '../constants/EmailConstants'
 
-class Email extends Model { 
+class EmailModel extends Model { 
   defaults () {
     return {
+      id: '', // what we're going to index by
       from: '',
       snippet: '',
       date: '',
@@ -11,19 +14,25 @@ class Email extends Model {
   }
 }
 
-export default class EmailList extends Collection {
+export default class EmailCollection extends Collection {
   constructor (options) {
     super(options)
-    this.model = Email
-    this.listName = options.listName
-    this.url = '/Emails/' + options.listName
+    this.model = EmailModel
+    this.url = '/Emails'
     this.dispatchToken = EmailDispatcher.register(this.dispatchCallback)
   }
   dispatchCallback (payload) {
     switch (payload.actionType) { 
-      case 'email-remove': 
-        this.remove(payload.email)
+      case 'email-switch':
+        let email = this.get(paylaod.email.id)
+        email.listName = payload.list
+        //email.save({}, {url:'/api/v1/tags/'+model.get('id')}) uncomment when we server
+        this.set({email},{remove: false})
         break
     }
   }
 }
+
+// what are the events that we actually want to hanle
+// 1. moving from one list to another
+//    - in order to do this we need to look at
