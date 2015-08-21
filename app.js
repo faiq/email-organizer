@@ -1,8 +1,3 @@
-/*import EmailList from './public/stores/EmailStore'
-console.log(typeof EmailList)
-let x = new EmailList({listName: 'read'})
-console.log(x.listName)
-*/
 import EmailList from './public/components/EmailList'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
@@ -13,44 +8,42 @@ import React from 'react'
 class App extends React.Component {
   constructor (props) { 
     super(props)
-    this.state = {}
+    this.state = {data: {}}
   }
 
-  componentWillMount() {
-    console.log(this.props)
+  componentDidMount() {
+    let data = this.state.data
+    if (!data) {
+      data = this.props.emailStore.fetch()
+      data = this.mangleData(data)
+    }
     this.props.emailStore.on('add', (email) => {
-      this.forceUpdate()
-    }, this)
+      let listName = email.get(listName)
+      if (data[listName]) data[listName].push(email.toJSON())
+      else data[listName] = [email.toJSON] 
+      if (this.isMounted()) this.setState({data: data})
+    })
   }
 
   render () {
     const { data } = this.state
-    let list = listNames.map((listName, index) => {
-      let emailsInList = emails.filter(e => e.listName == listName);
+    let list = data.keys().map((listName) => {
+       let emailsInList = data[listName]
        return <EmailList name={listName} key={index} onDrop={(item) => this.handleDrop(item, listName)} data={emailsInList}/>
-      
     })
     return <div className="row">{list}</div> 
   }
 
   handleDrop (email, listName) {
-    EmailActions.switchEmail(email, listName)
-    /*
-    if (email.listName != listName) {
-      let emailIndex = this.getEmailIndex(email)
-      email.listName = listName
-      let emails = this.state.emails
-      emails[emailIndex] = email
-      this.setState({emails: emails})
-  }*/
+    if (email.listName != listName) EmailActions.switchEmail(email, listName)
   }
 
-  getEmailIndex (email) {
-    let emailIndex = this.state.emails.map((e, i) => { 
-      if (e.from == email.from && e.snippet == email.snippet && e.date == email.date) 
-        return i
-    }).filter(num => typeof num === 'number')
-    return emailIndex
+  mangleData(data) { 
+    let ret = {}
+    for (let email in data) { 
+      
+    }
   }
 }
+
 React.render(React.createElement(DragDropContext(HTML5Backend)(App), { emailStore: new EmailCollection () }), document.body)

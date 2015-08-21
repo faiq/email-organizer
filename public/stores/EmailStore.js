@@ -38,6 +38,13 @@ export default class EmailCollection extends Collection {
         }
     }
   }
+  fetch() { 
+    return [
+        { from: 'chris wiggins', snippet: 'ayyy lmao', date: '1/1/2015', listName: 'read'},
+        { from: 'chris wiggins', snippet: 'tsss papapa', date: '1/1/2015', listName: 'not read'},
+        { from: 'chris wiggins', snippet: 'read thing', date: '1/1/2015', listName: 'read'}
+      ]
+  }
 }
 
 // what are the events that we actually want to hanle
