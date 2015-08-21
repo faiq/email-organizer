@@ -1,10 +1,10 @@
-import { EmailDispatcher } from '../Dispatcher'
-import { EmailConstants } from '../constants/EmailConstants'
+import EmailDispatcher from '../Dispatcher'
+import EmailConstants from '../constants/EmailConstants'
 
 const EmailActions = {
   switchEmail: function (email, newList) { 
     EmailDispatcher.dispatch({ 
-      actionType: EmailConstant.EMAIL_SWITCH,
+      actionType: EmailConstants.EMAIL_SWITCH,
       email: email,
       list: newList
     })

@@ -1,6 +1,9 @@
-import { Model, Collection } from 'backbone'
-import { EmailDispatcher } from '../Dispatcher'
-import { EmailConstants } from  '../constants/EmailConstants'
+import Backbone from 'backbone'
+import EmailDispatcher from '../Dispatcher'
+import EmailConstants from  '../constants/EmailConstants'
+
+const Model = Backbone.Model 
+const Collection = Backbone.Collection
 
 class EmailModel extends Model { 
   defaults () {
@@ -19,16 +22,20 @@ export default class EmailCollection extends Collection {
     super(options)
     this.model = EmailModel
     this.url = '/Emails'
-    this.dispatchToken = EmailDispatcher.register(this.dispatchCallback)
+    this.dispatchToken = EmailDispatcher.register(this.dispatchCallback.bind(this))
   }
   dispatchCallback (payload) {
     switch (payload.actionType) { 
       case EmailConstants.EMAIL_SWITCH:
-        let email = this.get(paylaod.email.id)
-        email.listName = payload.list
-        //email.save({}, {url:'/api/v1/tags/'+model.get('id')}) uncomment when we server
-        this.set({email},{remove: false})
-        break
+        if (payload.email) {
+          let email = this.get(payload.email.id) || new EmailModel()
+          console.log(email)
+          email.set('listName', payload.list)
+          //email.save({}, {url:'/api/v1/tags/'+model.get('id')}) uncomment when we server
+          console.log(this)
+          this.push([email], {remove: false})
+          break
+        }
     }
   }
 }
