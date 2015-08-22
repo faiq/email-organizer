@@ -1,41 +1,47 @@
 .Emails {
-  background-color: #d3f4d3;
+  background-color: #8facc0;
   text-align: center;
-  width: 220px; }
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
 
-.Emails h1 {
-  padding-bottom: 0px; }
+.header {
+  padding-bottom: 0px;
+  background-color: #818d97;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  height: 30px; }
+
+.listHeader {
+  padding-bottom: 0px;
+  background-color: #818d97;
+  text-shadow: #484d51 2px;
+  border-bottom: 1px solid #484d51;
+  padding-bottom: 2px; }
 
 .Email {
-  height: 90px;
-  width: 200px;
+  height: 100px;
+  width: 270px;
   border: 2px solid #666666;
-  background-color: #A5A6A6;
-  margin-right: 5px;
+  background-color: #EFEFEF;
   -webkit-border-radius: 10px;
   -ms-border-radius: 10px;
   -moz-border-radius: 10px;
-  border-radius: 3px;
+  border-radius: 5px;
   -webkit-box-shadow: inset 0 0 3px #000;
   -ms-box-shadow: inset 0 0 3px #000;
-  box-shadow: inset 0 0 3px #000;
-  text-align: center;
-  color: #fdfdfd;
+  box-shadow: inset 0 0 1px #000;
+  text-align: left;
+  color: #757575;
   cursor: move; }
 
 .Email .header {
+  color: #FFF;
   text-shadow: #000 0 1px;
-  box-shadow: 5px;
-  background: #242B35;
-  border-bottom: 1px solid #ddd;
-  -webkit-border-top-left-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -ms-border-radius-topleft: 10px;
-  border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 10px;
-  -ms-border-top-right-radius: 10px;
-  -moz-border-radius-topright: 10px;
-  border-top-right-radius: 3px;
+  background: #818d97;
+  border-bottom: 1px solid #000;
+  font-size: 18px;
   overflow: auto; }
 
 .Email #from {
@@ -46,11 +52,13 @@
   overflow: auto;
   float: right; }
 
+.EmailListContainer {
+  padding-top: 15px;
+  margin: 0; }
+
 #EmailList {
   list-style-type: none;
-  display: inline-block;
-  padding: 0;
-  margin: 0; }
+  display: inline-block; }
 
 .Email #snippet {
   padding-top: 5px;
@@ -61,6 +69,5 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  /* Required to make elements draggable in old WebKit */
   -khtml-user-drag: element;
   -webkit-user-drag: element; }
