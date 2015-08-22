@@ -28,10 +28,14 @@ class EmailList extends React.Component {
     })
     return connectDropTarget(
       <div className="three columns Emails">
-      <h1> {name} </h1>
-      <ul id="EmailList">
-        {Emails}
-      </ul>
+        <div className="listHeader">
+          <h1> {name} </h1>
+        </div>
+        <div className="EmailListContainer">
+          <ul id="EmailList">
+            {Emails}
+          </ul>
+        </div>
       </div>
     )
   }
