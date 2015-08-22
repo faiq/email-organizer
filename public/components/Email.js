@@ -4,17 +4,11 @@ import { DragSource } from 'react-dnd'
 const emailSource = {
   beginDrag(props) {
     return {
-      from: props.from,
-      snippet: props.snippet,
-      date: props.date,
-      listName: props.listName
+      id: props.id
     }
   }
 }
 
-/**
- * Specifies which props to inject into your component.
- */
 function collect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),

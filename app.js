@@ -13,16 +13,15 @@ class App extends React.Component {
 
   componentDidMount() {
     let data = this.state.data
-    console.log(data)
     if (!Object.keys(data).length) {
       data = this.props.emailStore.fetch()
       data = this.mangleData(data)
       this.setState({data: data})
     }
-    this.props.emailStore.on('add', (email) => {
-      let listName = email.get(listName)
+    this.props.emailStore.on('change', (email) => {
+      let listName = email.get('listName')
       if (data[listName]) data[listName].push(email.toJSON())
-      else data[listName] = [email.toJSON] 
+      else data[listName] = [email.toJSON()]
       this.setState({data: data})
     })
   }
@@ -41,12 +40,11 @@ class App extends React.Component {
   }
 
   mangleData(data) { 
-    console.log(data)
     let ret = {}
-    for (let email in data) { 
+    data.map((email) => { 
       if (ret[email.listName]) ret[email.listName].push(email)
       else ret[email.listName] = [email]
-    }
+    })
     return ret
   }
 }

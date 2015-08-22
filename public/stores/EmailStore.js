@@ -29,24 +29,12 @@ export default class EmailCollection extends Collection {
       case EmailConstants.EMAIL_SWITCH:
         if (payload.email) {
           let email = this.get(payload.email.id) || new EmailModel()
-          console.log(email)
+          console.log(email.toJSON())
           email.set('listName', payload.list)
           //email.save({}, {url:'/api/v1/tags/'+model.get('id')}) uncomment when we server
-          console.log(this)
-          this.push([email], {remove: false})
+          this.set({email}, {remove: false})
           break
         }
     }
   }
-  fetch() { 
-    return [
-        { from: 'chris wiggins', snippet: 'ayyy lmao', date: '1/1/2015', listName: 'read'},
-        { from: 'chris wiggins', snippet: 'tsss papapa', date: '1/1/2015', listName: 'not read'},
-        { from: 'chris wiggins', snippet: 'read thing', date: '1/1/2015', listName: 'read'}
-      ]
-  }
 }
-
-// what are the events that we actually want to hanle
-// 1. moving from one list to another
-//    - in order to do this we need to look at
