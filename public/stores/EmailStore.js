@@ -28,11 +28,11 @@ export default class EmailCollection extends Collection {
     switch (payload.actionType) { 
       case EmailConstants.EMAIL_SWITCH:
         if (payload.email) {
-          let email = this.get(payload.email.id) || new EmailModel()
+          let email = this.get(payload.email.id)
           console.log(email.toJSON())
           email.set('listName', payload.list)
-          //email.save({}, {url:'/api/v1/tags/'+model.get('id')}) uncomment when we server
-          this.set({email}, {remove: false})
+          console.log(email.toJSON())
+          email.save()
           break
         }
     }
