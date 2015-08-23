@@ -21,7 +21,7 @@ export default class EmailCollection extends Collection {
   constructor (options) {
     super(options)
     this.model = EmailModel
-    this.url = '/Emails'
+    this.url = '/emails'
     this.dispatchToken = EmailDispatcher.register(this.dispatchCallback.bind(this))
   }
   dispatchCallback (payload) {
