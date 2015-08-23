@@ -40,6 +40,11 @@
   cursor: move;
 }
 
+.inbox {
+  @extend .Email;
+  padding-top:0px;
+  padding-bottom:0px;
+}
 .Email .header {
   color: #FFF;
   text-shadow: #000 0 1px;
