@@ -13,4 +13,7 @@ router.get('/emails', function (req,res) {
     { id: 2, from: 'chris wiggins', snippet: 'tsss papapa', date: '1/1/2015', listName: 'not read'},
     { id: 3, from: 'chris wiggins', snippet: 'read thing', date: '1/1/2015', listName: 'read'}
   ]
+  res.send(yo)
 })
+
+http.createServer(router).listen('3000', '127.0.0.1')

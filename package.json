@@ -10,11 +10,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify public/app.js > ./public/bundle.js && npm run build-css",
+    "build": "browserify ./app.js > ./public/bundle.js && npm run build-css",
     "build-css": "sass ./public/styles/custom.scss > ./public/styles/custom.css",
-    "serve": "ecstatic -p 8000 public",
+    "serve": "node server.js",
     "start": "npm run build-css && npm run serve & npm run watch",
-    "watch": "watchify app.js -o public/bundle.js -dv"
+    "watch": "watchify ./app.js -o public/bundle.js -dv"
   },
   "repository": {
     "type": "git",
