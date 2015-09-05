@@ -40,12 +40,12 @@
   cursor: move;
 }
 
-.inbox {
+.inboxEmail {
   @extend .Email;
-  padding-top:0px;
-  padding-bottom:0px;
+  width: 100%;
 }
-.Email .header {
+
+.header {
   color: #FFF;
   text-shadow: #000 0 1px;
   background: #818d97;
@@ -54,29 +54,35 @@
   overflow:auto;
 }
 
-.Email #from { 
+#from { 
   overflow:auto;
   float: left;
 } 
 
-.Email #date { 
+#date { 
   overflow:auto;
   float: right;
 } 
+
+#snippet {
+  padding-top: 5px;
+  text-align:left;
+}
 
 .EmailListContainer { 
   padding-top: 15px;
   margin:0;
 }
 
-#EmailList { 
+.emailList { 
   list-style-type: none;
   display: inline-block;
 }
 
-.Email #snippet {
-  padding-top: 5px;
-  text-align:left;
+.inboxList { 
+  @extend .emailList;
+  margin-bottom:0em;
+  width:100%;
 }
 
 [draggable] {

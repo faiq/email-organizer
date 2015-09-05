@@ -26,13 +26,14 @@ class EmailList extends React.Component {
     let Emails = data.map((e, i) => {
       return <Email snippet={e.snippet} from={e.from} key={i} date={e.date} listName={e.listName} id={e.id} />
     })
+    let listClass = this.props.name.toLowerCase() == "inbox" ? 'inboxList':'emailList'
     return connectDropTarget(
       <div className="three columns Emails">
         <div className="listHeader">
           <h1> {name} </h1>
         </div>
         <div className="EmailListContainer">
-          <ul id="EmailList">
+          <ul className={listClass}>
             {Emails}
           </ul>
         </div>

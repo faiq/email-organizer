@@ -22,9 +22,9 @@ class Email extends React.Component {
   }
   render () {
     const { connectDragSource, isDragging, from, date, snippet, listName } = this.props
-    let clazz = listName == "inbox" ? 'inboxEmail':'Email'
-    return connectDragSource (<li>
-      <div className={clazz} draggable="true"> 
+    let emailClass = listName.toLowerCase() == 'inbox' ? 'inboxEmail':'Email'
+    return connectDragSource (<li>       
+        <div className={emailClass} draggable="true">
         <div className="header"> 
           <div id="from"> {from} </div>
           <div id="date"> {date} </div>
