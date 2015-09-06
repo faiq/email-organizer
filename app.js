@@ -3,6 +3,7 @@ import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
 import EmailCollection from './public/stores/EmailStore'
 import EmailActions from './public/actions/EmailActions'
+import AddList from './public/components/AddList'
 import React from 'react'
   
 class App extends React.Component {
@@ -35,7 +36,10 @@ class App extends React.Component {
        let emailsInList = data[listName]
        return <EmailList name={listName} key={index} onDrop={(item) => this.handleDrop(item, listName)} data={emailsInList}/>
     })
-    return <div className="row">{list}</div> 
+    return (<div> 
+        <div className="row">{list}</div> 
+        <AddList/>
+      </div>)
   }
 
   handleDrop (email, listName) {
