@@ -1,9 +1,10 @@
 import { Dispatcher } from 'flux'
 
-class EmailDispatcher extends Dispatcher {
+class AppDispatcher extends Dispatcher {
   constructor () {
     super()
   }
+
   handleViewAction (action) { 
     this.dispatch({ 
       source: 'VIEW_ACTION',
@@ -12,4 +13,4 @@ class EmailDispatcher extends Dispatcher {
   } 
 }
 
-export default new EmailDispatcher()
+export default new AppDispatcher()

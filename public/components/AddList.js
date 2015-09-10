@@ -1,4 +1,5 @@
 import React from 'react'
+import ListActions from '../actions/ListActions' 
 
 export default class AddList extends React.Component {
   constructor (props) {
@@ -11,8 +12,9 @@ export default class AddList extends React.Component {
     $(this.refs.modal.getDOMNode()).openModal({});
   }
   submitHandler() {
-    let val = this.refs.input.getDOMNode()
-    console.log(val.value)
+    let node = this.refs.input.getDOMNode(), 
+      value = node.value
+    ListActions.newList(value)
   }  
   render() {
     let style = {bottom: 24, right: 24}
@@ -24,11 +26,13 @@ export default class AddList extends React.Component {
       </div>
       <div ref="modal" className="modal">
         <div className="modal-content">
+          <h4>Create a New List!</h4>
+          <p> Insert the name of your new list below! </p>
           <div class="row">
-            <input ref="input" placeholder="Placeholder" id="first_name" type="text" class="validate"></input>
+            <input ref="input" placeholder="Placeholder" name="listName" type="text" class="validate"></input>
             <label>List Name</label>
-            <a onClick={this.submitHandler} className="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
           </div> 
+            <a onClick={this.submitHandler} className="modal-action modal-close waves-effect waves-light-blue">Make My New List!</a>
         </div>
       </div>
     </div>)

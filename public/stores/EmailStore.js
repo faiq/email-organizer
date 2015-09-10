@@ -1,11 +1,14 @@
 import Backbone from 'backbone'
-import EmailDispatcher from '../Dispatcher'
+import AppDispatcher from '../Dispatcher'
 import EmailConstants from  '../constants/EmailConstants'
 
 const Model = Backbone.Model 
 const Collection = Backbone.Collection
 
 class EmailModel extends Model { 
+  constructor (options) { 
+    super(options)
+  }
   defaults () {
     return {
       id: '', // what we're going to index by
@@ -22,7 +25,7 @@ export default class EmailCollection extends Collection {
     super(options)
     this.model = EmailModel
     this.url = '/emails'
-    this.dispatchToken = EmailDispatcher.register(this.dispatchCallback.bind(this))
+    this.dispatchToken = AppDispatcher.register(this.dispatchCallback.bind(this))
   }
   dispatchCallback (payload) {
     switch (payload.actionType) { 

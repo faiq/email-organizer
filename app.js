@@ -2,6 +2,7 @@ import EmailList from './public/components/EmailList'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
 import EmailCollection from './public/stores/EmailStore'
+import ListCollection from './public/stores/ListStore'
 import EmailActions from './public/actions/EmailActions'
 import AddList from './public/components/AddList'
 import React from 'react'
@@ -27,6 +28,10 @@ class App extends React.Component {
       let data = this.mangleData(a)
       console.log(data)
       this.setState({data: data})
+    },this)
+
+    this.props.listStore.on('add', (list) => {
+      console.log('ayyyyy lmao', list)
     },this)
   }
 
@@ -57,4 +62,4 @@ class App extends React.Component {
   }
 }
 
-React.render(React.createElement(DragDropContext(HTML5Backend)(App), { emailStore: new EmailCollection () }), document.body)
+React.render(React.createElement(DragDropContext(HTML5Backend)(App), { emailStore: new EmailCollection (), listStore: new ListCollection }), document.body)
