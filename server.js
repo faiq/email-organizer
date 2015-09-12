@@ -4,9 +4,11 @@ var express = require("express")
   , router = express() 
 
 router.use(express.static(path.join(__dirname + '/public')))
+
 router.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'))
 })
+
 router.get('/emails', function (req,res) {
   var yo = [
     { id: 1, from: 'chris wiggins', snippet: 'ayyy lmao', date: '1/1/2015', listName: 'inbox'},
@@ -16,6 +18,11 @@ router.get('/emails', function (req,res) {
     { id: 5, from: 'chris wiggins', snippet: 'also read thing', date: '1/1/2015', listName: 'read'},
     { id: 6, from: 'chris wiggins', snippet: 'damn faiq u r so cool', date: '1/1/2015', listName: 'not read'},
   ]
+  res.send(yo)
+})
+
+router.get('/lists', function (req,res) {
+  var yo = [{listName: 'inbox'}, {listName: 'read'}, {listName: 'not read'}, {listName:'lmao'}]
   res.send(yo)
 })
 

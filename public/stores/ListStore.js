@@ -29,7 +29,7 @@ export default class ListCollection extends Collection {
       case ListConstants.NEW_LIST:
         let list = new ListModel()
         list.set('listName', payload.list)
-        list.save()
+        //list.save()
         this.add(list)
     }
   }

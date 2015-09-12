@@ -10,14 +10,15 @@ import React from 'react'
 class App extends React.Component {
   constructor (props) { 
     super(props)
-    this.state = {data: {}}
+    this.state = {emailGroupings: {}, listNames: []}
   }
 
   componentWillMount () {
     this.props.emailStore.fetch().then((res) => {
-      let data = this.mangleData(res)
-      this.setState({data: data})
+      let data = this.mangleEmailData(res)
+      this.setState({emailGroupings: data})
     }).done()
+    this.props.listStore.fetch()  
   }
 
   componentDidMount() {
@@ -25,20 +26,24 @@ class App extends React.Component {
       let a = this.props.emailStore.toJSON()
       console.log(email.toJSON())
       console.log(a, typeof a)
-      let data = this.mangleData(a)
-      console.log(data)
-      this.setState({data: data})
+      let data = this.mangleEmailData(a)
+      this.setState({emailGroupings: data})
     },this)
 
     this.props.listStore.on('add', (list) => {
-      console.log('ayyyyy lmao', list)
+      let lists = this.state.listNames
+      console.log(list.toJSON())
+      if (!list.get('listName') == '') {
+        lists.push(list.get('listName'))
+        this.setState({listNames: lists})
+      }
     },this)
   }
 
   render () {
-    const { data } = this.state
-    let list = Object.keys(data).map((listName, index) => {
-       let emailsInList = data[listName]
+    const { emailGroupings, listNames } = this.state
+    let list = listNames.map((listName, index) => {
+       let emailsInList = emailGroupings[listName]
        return <EmailList name={listName} key={index} onDrop={(item) => this.handleDrop(item, listName)} data={emailsInList}/>
     })
     return (<div> 
@@ -51,7 +56,7 @@ class App extends React.Component {
     if (email.listName != listName) EmailActions.switchEmail(email, listName)
   }
 
-  mangleData(data) { 
+  mangleEmailData(data) { 
     let ret = {}
     Array.prototype.map.call(data, (email) => { 
       let listName = email.listName != null ? email.listName : 'inbox'
@@ -62,4 +67,4 @@ class App extends React.Component {
   }
 }
 
-React.render(React.createElement(DragDropContext(HTML5Backend)(App), { emailStore: new EmailCollection (), listStore: new ListCollection }), document.body)
+React.render(React.createElement(DragDropContext(HTML5Backend)(App), { emailStore: new EmailCollection(), listStore: new ListCollection() }), document.body)
