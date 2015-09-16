@@ -10,9 +10,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify ./app.js > ./public/bundle.js && npm run build-css",
+    "build": "browserify ./public/app.js > ./public/bundle.js && npm run build-css",
     "build-css": "sass ./public/styles/custom.scss > ./public/styles/custom.css",
-    "serve": "supervisor server.js",
+    "serve": "go run server.go",
     "start": "npm run build-css && npm run serve & npm run watch",
     "watch": "watchify ./app.js -o public/bundle.js -dv"
   },

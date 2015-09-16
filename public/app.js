@@ -1,10 +1,10 @@
-import EmailList from './public/components/EmailList'
+import EmailList from './components/EmailList'
 import HTML5Backend from 'react-dnd/modules/backends/HTML5'
 import { DragDropContext } from 'react-dnd'
-import EmailCollection from './public/stores/EmailStore'
-import ListCollection from './public/stores/ListStore'
-import EmailActions from './public/actions/EmailActions'
-import AddList from './public/components/AddList'
+import EmailCollection from './stores/EmailStore'
+import ListCollection from './stores/ListStore'
+import EmailActions from './actions/EmailActions'
+import AddList from './components/AddList'
 import React from 'react'
   
 class App extends React.Component {
