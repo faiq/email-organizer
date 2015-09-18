@@ -6,7 +6,7 @@ var express = require("express")
 router.use(express.static(path.join(__dirname + '/public')))
 
 router.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'))
+  res.sendFile(path.join(__dirname + '/views/index.html'))
 })
 
 router.get('/emails', function (req,res) {
