@@ -14,7 +14,7 @@
     "build-css": "sass ./public/styles/custom.scss > ./public/styles/custom.css",
     "serve": "node server.js",
     "start": "npm run build-css && npm run serve & npm run watch",
-    "watch": "watchify ./app.js -o public/bundle.js -dv"
+    "watch": "watchify ./public/app.js -o public/bundle.js -dv"
   },
   "repository": {
     "type": "git",
