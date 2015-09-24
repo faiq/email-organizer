@@ -11,3 +11,5 @@ Getting it started.
 4. Go to http://localhost:3000
 
 Here's a preview of what it looks like (so far)!
+
+<img src="http://i61.tinypic.com/qnkztk.png" border="0"/>
